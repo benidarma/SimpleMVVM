@@ -1,3 +1,8 @@
+import java.util.Properties
+
+val properties = Properties()
+properties.load(project.rootProject.file("local.properties").reader())
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -33,18 +38,25 @@ android {
     }
 
     buildTypes {
+        defaultConfig {
+            buildConfigField(
+                "String",
+                "API_KEY",
+                "\"${properties.getProperty("api.key") ?: ""}\""
+            )
+        }
         debug {
             this.buildConfigField(
                 "String",
                 "BASE_URL",
-                "\"${libs.versions.baseUrlDebug.get()}\""
+                "\"${properties.getProperty("base.url.debug") ?: ""}\""
             )
         }
         release {
             this.buildConfigField(
                 "String",
                 "BASE_URL",
-                "\"${libs.versions.baseUrlDebug.get()}\""
+                "\"${properties.getProperty("base.url.release") ?: ""}\""
             )
             isMinifyEnabled = false
             proguardFiles(
@@ -64,7 +76,7 @@ android {
         buildConfig = true
         compose = true
     }
-    composeOptions.kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
+    composeOptions.kotlinCompilerExtensionVersion = libs.versions.kotlinCompiler.get()
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"

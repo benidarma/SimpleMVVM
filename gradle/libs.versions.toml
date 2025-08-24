@@ -11,12 +11,8 @@ versionName = "1.0"
 # JVM
 jvmTarget = "11"
 
-# API Url
-baseUrlDebug = "https://jsonplaceholder.typicode.com/"
-baseUrlRelease = "https://jsonplaceholder.typicode.com/"
-
 # kotlinCompilerExtensionVersion
-kotlinCompilerExtensionVersion = "1.5.4"
+kotlinCompiler = "1.5.4"
 
 agp = "8.11.1"
 kotlin = "2.0.21"
