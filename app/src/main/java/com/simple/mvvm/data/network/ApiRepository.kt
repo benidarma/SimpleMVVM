@@ -1,6 +1,8 @@
 package com.simple.mvvm.data.network
 
-import com.simple.mvvm.data.models.Movie
+import com.simple.mvvm.data.models.News
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -8,21 +10,35 @@ import javax.inject.Singleton
 class ApiRepository @Inject constructor(
     private val apiService: ApiService
 ) {
-    suspend fun getMovies(): ApiResult<List<Movie>> = try {
-        val response = apiService.getMovies()
-        ApiResult.Success(response)
-    } catch (_: Exception) {
-        ApiResult.Failure(ApiError(11, "GET_MOVIES"))
+    fun getNews(
+        query: String,
+        from: String,
+        sortBy: String,
+        apiKey: String
+    ): Flow<ApiResult<News>> = flow {
+        try {
+            val response = apiService.getNews(
+                query = query,
+                from = from,
+                sortBy = sortBy,
+                apiKey = apiKey
+            )
+            emit(ApiResult.Success(response))
+        } catch (_: Exception) {
+            emit(ApiResult.Failure(ApiError(11, "GET_NEWS")))
+        }
     }
 
-    suspend fun createMovie(movie: Movie): ApiResult<Movie> = try {
-        val response = apiService.createMovie(movie)
-        if (response.isSuccessful) {
-            ApiResult.Success(response.body()!!)
-        } else {
-            ApiResult.Failure(ApiError(22, "CREATE_MOVIE"))
+    fun createNews(news: News): Flow<ApiResult<News?>> = flow {
+        try {
+            val response = apiService.createNews(news)
+            if (response.isSuccessful) {
+                emit(ApiResult.Success(response.body()))
+            } else {
+                emit(ApiResult.Failure(ApiError(22, "POST_NEWS")))
+            }
+        } catch (_: Exception) {
+            emit(ApiResult.Failure(ApiError(99, "POST_NEWS")))
         }
-    } catch (_: Exception) {
-        ApiResult.Failure(ApiError(99, "CREATE_MOVIE"))
     }
 }

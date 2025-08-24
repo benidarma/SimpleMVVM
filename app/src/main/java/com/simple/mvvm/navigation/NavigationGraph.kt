@@ -10,27 +10,30 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.simple.mvvm.ui.screens.movie.MoviesScreen
-import com.simple.mvvm.ui.screens.movie.details.MovieDetailsScreen
+import com.simple.mvvm.AppViewModel
+import com.simple.mvvm.ui.screens.article.ArticleScreen
+import com.simple.mvvm.ui.screens.news.NewsScreen
 
 fun NavGraphBuilder.navigationRootGraph(
     navController: NavHostController,
+    appViewModel: AppViewModel
 ) {
     navigation(
         route = Screen.MainRoute.value,
-        startDestination = Screen.Movies.value
+        startDestination = Screen.News.value
     ) {
-        composable(Screen.Movies.value) {
-            MoviesScreen(
-                onMovieDetails = {
+        composable(Screen.News.value) {
+            NewsScreen(
+                appViewModel = appViewModel,
+                onNavigateToArticle = {
                     navController.navigate(
-                        Screen.MovieDetails.withId(it)
+                        Screen.Article.withId(it)
                     )
                 }
             )
         }
         composable(
-            route = Screen.MovieDetails.value,
+            route = Screen.Article.value,
             arguments = listOf(navArgument("id") { type = NavType.IntType }),
             enterTransition = {
                 slideIntoContainer(
@@ -51,7 +54,7 @@ fun NavGraphBuilder.navigationRootGraph(
                 )
             }
         ) { entry ->
-            MovieDetailsScreen(
+            ArticleScreen(
                 id = entry.arguments?.getInt("id") ?: 0
             )
         }

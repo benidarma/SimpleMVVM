@@ -2,8 +2,8 @@ package com.simple.mvvm.di
 
 import android.content.Context
 import androidx.room.Room
-import com.simple.mvvm.data.local.MovieDao
-import com.simple.mvvm.data.local.LocalDatabase
+import com.simple.mvvm.data.local.ArticleDao
+import com.simple.mvvm.data.local.ArticleDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,16 +19,16 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext appContext: Context
-    ): LocalDatabase {
+    ): ArticleDatabase {
         return Room.databaseBuilder(
             appContext,
-            LocalDatabase::class.java,
-            "movie_db"
+            ArticleDatabase::class.java,
+            "news_db"
         ).build()
     }
 
     @Provides
-    fun provideMovieDao(database: LocalDatabase): MovieDao {
-        return database.movieDao()
+    fun provideArticleDao(database: ArticleDatabase): ArticleDao {
+        return database.articleDao()
     }
 }
