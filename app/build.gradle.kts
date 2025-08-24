@@ -2,11 +2,19 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    // com.google.devtools.ksp
+    alias(libs.plugins.google.devtools.ksp)
+    // androidx.room
+    alias(libs.plugins.androidx.room)
 }
 
 android {
     namespace = "com.simple.mvvm"
     compileSdk = 36
+
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 
     defaultConfig {
         applicationId = "com.simple.mvvm"

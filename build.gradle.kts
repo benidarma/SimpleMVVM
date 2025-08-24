@@ -3,4 +3,8 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
+    // com.google.devtools.ksp
+    alias(libs.plugins.google.devtools.ksp) apply false
+    // androidx.room
+    alias(libs.plugins.androidx.room) apply false
 }
