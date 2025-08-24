@@ -86,4 +86,20 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.android.tooling)
+    ksp(libs.kapt.android.hilt)
+    implementation(libs.retrofit.gson)
+    implementation(libs.retrofit.gson.converter)
+    implementation(libs.retrofit.http)
+
+    implementation(libs.coil.image)
+
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }
