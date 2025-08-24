@@ -3,6 +3,7 @@ package com.simple.mvvm.components
 import androidx.compose.foundation.gestures.FlingBehavior
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -67,7 +68,14 @@ fun <T> EndlessLazyColumn(
             }
 
             filteredItems.isEmpty() -> {
-                item { emptyContent() }
+                item {
+                    Box(
+                        modifier = Modifier.fillParentMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        emptyContent()
+                    }
+                }
             }
 
             else -> {
