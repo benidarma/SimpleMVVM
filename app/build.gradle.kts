@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    // com.google.dagger.hilt.android
+    alias(libs.plugins.hilt.android)
     // com.google.devtools.ksp
     alias(libs.plugins.google.devtools.ksp)
     // androidx.room
@@ -35,14 +37,14 @@ android {
             this.buildConfigField(
                 "String",
                 "BASE_URL",
-                libs.versions.baseUrlDebug.get()
+                "\"${libs.versions.baseUrlDebug.get()}\""
             )
         }
         release {
             this.buildConfigField(
                 "String",
                 "BASE_URL",
-                libs.versions.baseUrlRelease.get()
+                "\"${libs.versions.baseUrlDebug.get()}\""
             )
             isMinifyEnabled = false
             proguardFiles(
@@ -62,6 +64,7 @@ android {
         buildConfig = true
         compose = true
     }
+    composeOptions.kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -95,6 +98,7 @@ dependencies {
     implementation(libs.retrofit.gson)
     implementation(libs.retrofit.gson.converter)
     implementation(libs.retrofit.http)
+    implementation(libs.okhttp3.logging)
 
     implementation(libs.coil.image)
 
