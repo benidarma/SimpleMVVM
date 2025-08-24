@@ -1,5 +1,19 @@
 [versions]
+# Android
+namespace = "com.simple.mvvm"
+compileSdk = "36"
+applicationId = "com.simple.mvvm"
+minSdk = "24"
+targetSdk = "36"
+versionCode = "1"
+versionName = "1.0"
 
+# JVM
+jvmTarget = "11"
+
+# API Url
+baseUrlDebug = "https://jsonplaceholder.typicode.com/"
+baseUrlRelease = "https://jsonplaceholder.typicode.com/"
 
 agp = "8.11.1"
 kotlin = "2.0.21"

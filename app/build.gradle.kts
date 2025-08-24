@@ -9,25 +9,41 @@ plugins {
 }
 
 android {
-    namespace = "com.simple.mvvm"
-    compileSdk = 36
+    namespace = libs.versions.namespace.get()
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     room {
         schemaDirectory("$projectDir/schemas")
     }
 
     defaultConfig {
-        applicationId = "com.simple.mvvm"
-        minSdk = 24
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = libs.versions.applicationId.get()
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
+        debug {
+            this.buildConfigField(
+                "String",
+                "BASE_URL",
+                libs.versions.baseUrlDebug.get()
+            )
+        }
         release {
+            this.buildConfigField(
+                "String",
+                "BASE_URL",
+                libs.versions.baseUrlRelease.get()
+            )
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -40,10 +56,16 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
+        buildConfig = true
         compose = true
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 
