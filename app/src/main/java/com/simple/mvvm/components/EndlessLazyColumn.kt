@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.simple.mvvm.extensions.reachedBottom
+import com.simple.mvvm.ui.screens.empty.EmptySearchScreen
 
 @Composable
 fun <T> EndlessLazyColumn(
@@ -73,7 +74,8 @@ fun <T> EndlessLazyColumn(
                         modifier = Modifier.fillParentMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        emptyContent()
+                        if (searchQuery.isEmpty()) emptyContent()
+                        else EmptySearchScreen()
                     }
                 }
             }
