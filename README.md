@@ -31,7 +31,5 @@ Simple MVVM
 | <img src="media/img_3.png" width="200"> | <img src="media/img_4.png" width="200"> | |	
 ---
 ## Video
-<video width="100%" controls>
-  <source src="media/screen_recording.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+**Direct Link:**  
+https://drive.google.com/file/d/1IzcXly5l53bkZUUbyWeEIAnRHVTMFOW2/view?usp=sharing
