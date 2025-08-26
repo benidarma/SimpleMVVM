@@ -25,11 +25,11 @@ Simple MVVM
 - Material 3
 ---
 ## Screenshots
-![img.png](media/img.png)
-![img_1.png](media/img_1.png)
-![img_2.png](media/img_2.png)
-![img_3.png](media/img_3.png)
-![img_4.png](media/img_4.png)
+<img src="media/img.png" width="300">	
+<img src="media/img_1.png" width="300">	
+<img src="media/img_2.png" width="300">
+<img src="media/img_3.png" width="300">	
+<img src="media/img_4.png" width="300">	
 ---
 ## Video
-[screen_recording.webm](media/screen_recording.webm)
+<video controls width="100%"> <source src="media/screen_recording.webm" type="video/webm"> Your browser does not support the video tag. </video>
